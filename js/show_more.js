@@ -3,8 +3,8 @@
 $(document).ready(start);
 
 function start() {
-  $(".readmore").click ({more_trigger: ".readmore", toggle_text: "#show-this-on-click", less_trigger: ".readless" }, show_more);
-  $(".readless").click ({more_trigger: ".readmore", toggle_text: "#show-this-on-click", less_trigger: ".readless" }, show_less);
+  $(".readmore").click ({more_trigger: ".readmore", toggle_text: "#show-this-on-click", less_trigger: ".readless"}, show_more);
+  $(".readless").click ({more_trigger: ".readmore", toggle_text: "#show-this-on-click", less_trigger: ".readless"}, show_less);
   $(".learnmore").click({more_trigger: ".learnmore", toggle_text: "#learnmoretext"}, show_more)
 }
 
