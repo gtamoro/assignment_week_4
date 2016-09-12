@@ -16,8 +16,7 @@ function start() {
 function show_more(event) {
   event.preventDefault();
   $(event.data.toggle_text).slideDown();
-  $(event.data.more_trigger).hide();
-  $(event.data.less_trigger).show();
+  toggle_links(event.data.more_trigger, event.data.less_trigger);
 }
 
 // this function requires three parameters:
@@ -27,7 +26,10 @@ function show_more(event) {
 
 function show_less(event) {
   event.preventDefault();
-  $(event.data.toggle_text).slideUp();
-  $(event.data.more_trigger).show();
-  $(event.data.less_trigger).hide();
+  $(event.data.toggle_text).slideUp("slow", function() { toggle_links(event.data.less_trigger, event.data.more_trigger);} );
+}
+
+function toggle_links(hide_trigger,show_trigger) {
+  $(hide_trigger).hide();
+  $(show_trigger).show();
 }
