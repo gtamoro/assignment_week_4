@@ -3,9 +3,13 @@
 $(document).ready(start);
 
 function start() {
-  $(".readmore").click ({more_trigger: ".readmore", toggle_text: "#show-this-on-click", less_trigger: ".readless"}, show_more);
-  $(".readless").click ({more_trigger: ".readmore", toggle_text: "#show-this-on-click", less_trigger: ".readless"}, show_less);
-  $(".learnmore").click({more_trigger: ".learnmore", toggle_text: "#learnmoretext"}, show_more)
+  // $(".readmore").click ({more_trigger: ".readmore", toggle_text: "#show-this-on-click", less_trigger: ".readless"}, show_more);
+  // $(".readless").click ({more_trigger: ".readmore", toggle_text: "#show-this-on-click", less_trigger: ".readless"}, show_less);
+  // $(".learnmore").click({more_trigger: ".learnmore", toggle_text: "#learnmoretext"}, show_more)
+
+  $(".readmore").click (function() { show_more(event,".readmore", "#show-this-on-click", ".readless"); } );
+  $(".readless").click (function() { show_less(event,".readmore", "#show-this-on-click", ".readless"); } );
+  $(".learnmore").click(function() { show_more(event,".learnmore", "#learnmoretext"); } );
 }
 
 // this function requires three parameters:
@@ -13,10 +17,10 @@ function start() {
 //   more_trigger: link that represents the "show more"
 //   less_trigger: link that represents the "show less"
 
-function show_more(event) {
+function show_more(event,more_trigger,toggle_text,less_trigger) {
   event.preventDefault();
-  $(event.data.toggle_text).slideDown();
-  toggle_links(event.data.more_trigger, event.data.less_trigger);
+  $(toggle_text).slideDown();
+  toggle_links(more_trigger,less_trigger);
 }
 
 // this function requires three parameters:
@@ -24,9 +28,9 @@ function show_more(event) {
 //   more_trigger: link that represents the "show more"
 //   less_trigger: link that represents the "show less"
 
-function show_less(event) {
+function show_less(event,more_trigger,toggle_text,less_trigger) {
   event.preventDefault();
-  $(event.data.toggle_text).slideUp("slow", function() { toggle_links(event.data.less_trigger, event.data.more_trigger);} );
+  $(toggle_text).slideUp("slow", function() { toggle_links(less_trigger,more_trigger);} );
 }
 
 function toggle_links(hide_trigger,show_trigger) {
